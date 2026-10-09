@@ -2493,3 +2493,31 @@ body, h1, h2, h3, h4, .serif-display, .brand-name, .trust-title, [class*="trust"
   .hero-title { font-size: 3.9rem; }
   .hero-brand { margin-bottom: 1.2rem; padding-bottom: 1.1rem; }
 }
+
+/* ORGANISED LOCALITY CHIPS + MOBILE CONFIGURATOR ORDER */
+.locality-chips-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.locality-chips-label {
+  grid-column: 1 / -1;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.locality-chip {
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .locality-chips-wrapper { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 1023px) {
+  .config-studio-right { order: -1; }
+  .config-studio-left { order: 1; }
+}
