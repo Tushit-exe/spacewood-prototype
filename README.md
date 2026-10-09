@@ -1,6 +1,6 @@
 # SpaceWood Interiors — Modular Studio Website Prototype
 
-A luxury mobile-first and desktop web prototype designed and engineered for **SpaceWood Interiors**, a modular kitchen and bespoke wardrobe studio established in 2016 in Deshpande Nagar, Hubli, Karnataka.
+A luxury mobile-first and desktop web prototype designed and engineered for **SpaceWood Interiors**, an interior design studio for modular kitchens, wardrobes, full-home and office interiors established in 2016 in Deshpande Nagar, Hubli, Karnataka.
 
 ---
 
