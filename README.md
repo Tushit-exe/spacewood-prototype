@@ -1,12 +1,12 @@
 # SpaceWood Interiors — Modular Studio Website Prototype
 
-A luxury mobile-first and desktop web prototype designed and engineered for **SpaceWood Interiors**, a modular kitchen and bespoke wardrobe studio established in 2016 in Deshpande Nagar, Hubballi, Karnataka.
+A luxury mobile-first and desktop web prototype designed and engineered for **SpaceWood Interiors**, a modular kitchen and bespoke wardrobe studio established in 2016 in Deshpande Nagar, Hubli, Karnataka.
 
 ---
 
 ## 🏛️ Studio Facts
 - **Business**: SpaceWood Interiors (est. 2016 · 9+ Years of Craftsmanship)
-- **Location**: F-32, First Floor, Laxmi Complex, Neeligin Road, beside Kittur Rani Chennamma Bank, Deshpande Nagar, Hubballi 580029
+- **Location**: F-32, First Floor, Laxmi Complex, Neeligin Road, beside Kittur Rani Chennamma Bank, Deshpande Nagar, Hubli 580029
 - **Phone & WhatsApp**: +91 97390 77177
 - **Operating Hours**: Monday–Saturday 10:00–19:00 | Sunday 10:00–13:00
 
@@ -35,7 +35,7 @@ A luxury mobile-first and desktop web prototype designed and engineered for **Sp
    - Animated odometer price counter smoothly transitions estimated rates without static jumps.
 
 5. **Site Visit Booking Form**:
-   - Balanced 2-column desktop grid with dynamic next-7-days rolling calendar picker, 3 time windows, and one-tap Hubballi locality quick chips (Deshpande Nagar, Vidyanagar, Shirur Park, Keshwapur, Gokul Road, Lingaraj Nagar).
+   - Balanced 2-column desktop grid with dynamic next-7-days rolling calendar picker, 3 time windows, and one-tap Hubli locality quick chips (Deshpande Nagar, Vidyanagar, Shirur Park, Keshwapur, Gokul Road, Lingaraj Nagar).
    - Generates pre-filled WhatsApp message directly to studio management (`+91 97390 77177`).
 
 6. **Full Responsive Fidelity**:
@@ -68,4 +68,4 @@ Open `http://localhost:8088/` in your browser.
 ---
 
 ## 📄 License
-Created as a client prototype for SpaceWood Interiors, Hubballi. All customer ratings, reviews, and project photography represent demonstration content for client presentation.
+Created as a client prototype for SpaceWood Interiors, Hubli. All customer ratings, reviews, and project photography represent demonstration content for client presentation.

@@ -1,6 +1,6 @@
 /**
  * SpaceWood Interiors — Studio Prototype JavaScript
- * Business: Modular kitchens and wardrobes in Hubballi, Karnataka
+ * Business: Modular kitchens and wardrobes in Hubli, Karnataka
  * In business since 2016
  */
 
@@ -9,7 +9,11 @@
 // Change this single constant to update the recipient WhatsApp number.
 // Format: Country code without '+' followed by 10-digit number.
 // ==========================================================================
-const WHATSAPP_NUMBER = '919739077177';
+const WHATSAPP_NUMBER = '919741119442';
+
+// Prototype mode: shows the owner's view of the enquiry instead of opening WhatsApp.
+// Set to false when the site goes live so messages open WhatsApp for the visitor.
+const DEMO_MODE = true;
 
 document.addEventListener('DOMContentLoaded', () => {
   initProjectCarousel();
@@ -31,7 +35,7 @@ const PROJECTS = [
     desc: 'A clean parallel modular kitchen blending matte basalt cabinetry with warm natural oak accents. Fully fitted with German Hettich Sensys soft-close mechanisms and quartz worktop.',
     finish: 'Matt Basalt & Natural Oak',
     size: '14 ft × 10 ft Parallel',
-    area: 'Shirur Park, Hubballi',
+    area: 'Shirur Park, Hubli',
     hardware: 'Hettich Sensys Soft-Close',
     accentColor: '#3d3027',
     image: 'assets/hero_modular_kitchen.jpg'
@@ -42,7 +46,7 @@ const PROJECTS = [
     desc: 'Floor-to-ceiling modular wardrobe engineered with fluted tinted glass panels, integrated sensor LED illumination, and custom shoe and accessory pull-outs.',
     finish: 'PU Satin Charcoal & Bronze Fluted Glass',
     size: '12 ft Floor-to-Ceiling',
-    area: 'Deshpande Nagar, Hubballi',
+    area: 'Deshpande Nagar, Hubli',
     hardware: 'Ebco Soft-Close Sliding Track',
     accentColor: '#2b2622',
     image: 'assets/collection_wardrobe.jpg'
@@ -53,7 +57,7 @@ const PROJECTS = [
     desc: 'Comprehensive turnkey living space including modular kitchen, master and kids wardrobes, bespoke TV console unit, and foyer storage cut to millimetre precision.',
     finish: 'American Walnut Veneer & Sand Matte',
     size: '1,450 sq.ft Complete Home',
-    area: 'Vidyanagar, Hubballi',
+    area: 'Vidyanagar, Hubli',
     hardware: 'Hettich Standard + Hafele Upgrades',
     accentColor: '#453123',
     image: 'assets/collection_turnkey.svg'
@@ -64,7 +68,7 @@ const PROJECTS = [
     desc: 'Architectural executive furniture setup featuring cable-concealed work desks, full-height storage credentials, and acoustic acoustic fluted wall cladding.',
     finish: 'Smoked Ash Laminate & Black Metal',
     size: '650 sq.ft Studio Suite',
-    area: 'Gokul Road, Hubballi',
+    area: 'Gokul Road, Hubli',
     hardware: 'Ebco Heavy Duty Fittings',
     accentColor: '#202224',
     image: 'assets/collection_office.svg'
@@ -302,10 +306,9 @@ I configured a custom Modular Kitchen on your website:
 • Estimated Sample Budget: ${priceText}
 • Hardware: Hettich / Ebco Soft-Close
 
-I would like to discuss next steps and schedule a site measurement in Hubballi.`;
+I would like to discuss next steps and schedule a site measurement in Hubli.`;
 
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      deliverEnquiry(message, 'Kitchen design enquiry');
     });
   }
 
@@ -489,25 +492,24 @@ function initBookingForm() {
       }
 
       if (!area) {
-        alert('Please enter your locality in Hubballi.');
+        alert('Please enter your locality in Hubli.');
         localityInput.focus();
         return;
       }
 
       const bookingMessage = 
 `Hello SpaceWood Interiors,
-I would like to schedule a Free Site Visit at my home in Hubballi:
+I would like to schedule a Free Site Visit at my home in Hubli:
 • Name: ${name}
 • Contact: ${phone}
-• Locality: ${area}, Hubballi
+• Locality: ${area}, Hubli
 • Preferred Date: ${bookingData.selectedDate}
 • Preferred Time: ${bookingData.selectedSlot}
 ${note ? `• Requirement Note: ${note}` : ''}
 
 Please confirm our appointment slot.`;
 
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(bookingMessage)}`;
-      window.open(whatsappUrl, '_blank');
+      deliverEnquiry(bookingMessage, 'Site visit request', { name, phone });
     });
   }
 }
@@ -633,3 +635,102 @@ function initHeaderScrollAndNav() {
 }
 
 
+
+
+// ==========================================================================
+// 6. ENQUIRY DELIVERY (prototype owner view or real WhatsApp)
+// ==========================================================================
+function deliverEnquiry(message, kind, who) {
+  if (!DEMO_MODE) {
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    return;
+  }
+  showOwnerView(message, kind, who || {});
+}
+
+function showOwnerView(message, kind, who) {
+  const old = document.getElementById('owner-view');
+  if (old) old.remove();
+  const lastFocus = document.activeElement;
+
+  const now = new Date();
+  const hh = now.getHours() % 12 || 12;
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const time = `${hh}:${mm} ${now.getHours() >= 12 ? 'pm' : 'am'}`;
+  const sender = who.name ? who.name : 'Website visitor';
+  const sub = who.phone ? who.phone : 'via spacewood website';
+
+  const wrap = document.createElement('div');
+  wrap.id = 'owner-view';
+  wrap.className = 'owner-view';
+  wrap.setAttribute('role', 'dialog');
+  wrap.setAttribute('aria-modal', 'true');
+  wrap.setAttribute('aria-labelledby', 'owner-view-title');
+
+  const card = document.createElement('div');
+  card.className = 'owner-view-card';
+
+  const lead = document.createElement('p');
+  lead.className = 'owner-view-lead';
+  lead.id = 'owner-view-title';
+  lead.textContent = 'This is what you would receive on your phone';
+
+  const phone = document.createElement('div');
+  phone.className = 'ov-phone';
+
+  const bar = document.createElement('div');
+  bar.className = 'ov-bar';
+  const avatar = document.createElement('span');
+  avatar.className = 'ov-avatar';
+  avatar.textContent = sender.trim().charAt(0).toUpperCase();
+  const who1 = document.createElement('span');
+  who1.className = 'ov-who';
+  const n1 = document.createElement('strong');
+  n1.textContent = sender;
+  const n2 = document.createElement('small');
+  n2.textContent = sub;
+  who1.append(n1, n2);
+  bar.append(avatar, who1);
+
+  const chat = document.createElement('div');
+  chat.className = 'ov-chat';
+  const tag = document.createElement('div');
+  tag.className = 'ov-tag';
+  tag.textContent = 'New enquiry · ' + kind;
+  const bubble = document.createElement('div');
+  bubble.className = 'ov-bubble';
+  bubble.textContent = message.replace(/\n{3,}/g, '\n\n');
+  const t = document.createElement('span');
+  t.className = 'ov-time';
+  t.textContent = time;
+  bubble.appendChild(t);
+  chat.append(tag, bubble);
+
+  phone.append(bar, chat);
+
+  const note = document.createElement('p');
+  note.className = 'owner-view-note';
+  note.textContent = 'On your live website this message arrives on your WhatsApp, with the customer\u2019s details already filled in.';
+
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'owner-view-close';
+  close.textContent = 'Close';
+
+  card.append(lead, phone, note, close);
+  wrap.appendChild(card);
+  document.body.appendChild(wrap);
+  document.body.classList.add('owner-view-open');
+
+  function done() {
+    wrap.remove();
+    document.body.classList.remove('owner-view-open');
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function onKey(e) { if (e.key === 'Escape') done(); }
+  close.addEventListener('click', done);
+  wrap.addEventListener('click', (e) => { if (e.target === wrap) done(); });
+  document.addEventListener('keydown', onKey);
+  close.focus();
+}
