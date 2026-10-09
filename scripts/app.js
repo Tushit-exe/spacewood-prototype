@@ -734,3 +734,13 @@ function showOwnerView(message, kind, who) {
   document.addEventListener('keydown', onKey);
   close.focus();
 }
+
+
+/* Always open at the top (stop browsers restoring an old scroll position) */
+(function () {
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  var toTop = function () { if (!location.hash) window.scrollTo(0, 0); };
+  toTop();
+  window.addEventListener('load', toTop);
+  window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
+})();
